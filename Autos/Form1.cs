@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Autos
 {
@@ -19,37 +20,58 @@ namespace Autos
 
         private void bt_submit_Click(object sender, EventArgs e)
         {
-            if ((tb_gyart.Text is null) || (tb_tipus.Text is null) || (tb_rendsz.Text is null))
-                {
-                    MessageBox.Show("Nem töltöttél ki minden mezőt. Minden mezőt ki kell tölteni", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (tb_gyart.Text is null)
-                    {
-                        tb_gyart.Focus();
-                    }
-                    if (tb_rendsz.Text is null)
-                    {
-                        tb_rendsz.Focus();
-                    }
-                    if (tb_tipus.Text is null)
-                    {
-                        tb_tipus.Focus();
-                    }
-            }
-            if (cb_teljesitmeny.SelectedItem == null)
+            int errorcounter = 0;
+            if ((String.IsNullOrEmpty(tb_gyart.Text)) || (String.IsNullOrEmpty(tb_rendsz.Text)) || (String.IsNullOrEmpty(tb_tipus.Text)))
             {
-                MessageBox.Show("Nem választottad ki a teljesítményt", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nem töltöttél ki minden mezőt. Minden mezőt ki kell tölteni", "Hiányzó adat!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                if (String.IsNullOrEmpty(tb_gyart.Text))
+                {
+                    tb_gyart.Focus();
+                    errorcounter++;
+                }
+
+                if (String.IsNullOrEmpty(tb_rendsz.Text))
+                {
+                    tb_rendsz.Focus();
+                    errorcounter++;
+                }
+              
+
+                if (String.IsNullOrEmpty(tb_tipus.Text))
+                {
+                    tb_tipus.Focus();
+                    errorcounter++;
+                }
             }
-            Kocsi kocsi = new Kocsi(tb_gyart.Text, tb_tipus.Text, tb_rendsz, cb_teljesitmeny.SelectedItem.ToString());
-            lib_1.Items.Add(kocsi);
+            
+            if (!Regex.Match(tb_rendsz.Text, "^([A-Z]{3})([0-9]{3})$").Success)
+            {
+                tb_rendsz.Focus();
+                MessageBox.Show("Nem megfelelő a renszám formátuma. A helyes formátum: ABC123", "Hibás adat!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorcounter++;
+            }
+
+
+            Kocsi kocsi = new Kocsi(tb_rendsz.Text, tb_gyart.Text, tb_tipus.Text, (int)numericUpDown1.Value);
+            if (errorcounter == 0)
+            {
+                lib_1.Items.Add(kocsi);
+            }
+            else 
+            {
+                errorcounter = 0;
+            }
+             
         }
 
         private void lib_1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Kocsi kocsi = (Kocsi)lib_1.Items[lib_1.SelectedIndex];
             tb_gyart.Text = kocsi.Gyártmány;
-            tb_tipus.Text = kocsi.Tipus;
-            tb_rendsz = kocsi.Rendszám;
-            cb_teljesitmeny.SelectedItem = kocsi.Teljesítmény;
+            tb_tipus.Text = kocsi.Típus;
+            tb_rendsz.Text = kocsi.Rendszám;
+            numericUpDown1.Value = kocsi.Teljesítmény;
         }
     }
 }

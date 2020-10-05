@@ -33,12 +33,15 @@
             this.lb_tip = new System.Windows.Forms.Label();
             this.lb_gyart = new System.Windows.Forms.Label();
             this.lb_telj = new System.Windows.Forms.Label();
-            this.cb_teljesitmeny = new System.Windows.Forms.ComboBox();
             this.tb_rendsz = new System.Windows.Forms.TextBox();
             this.tb_gyart = new System.Windows.Forms.TextBox();
             this.bt_submit = new System.Windows.Forms.Button();
             this.tb_tipus = new System.Windows.Forms.TextBox();
             this.lib_1 = new System.Windows.Forms.ListBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // lb_rendsz
@@ -81,21 +84,6 @@
             this.lb_telj.TabIndex = 3;
             this.lb_telj.Text = "Teljesítmény";
             // 
-            // cb_teljesitmeny
-            // 
-            this.cb_teljesitmeny.FormattingEnabled = true;
-            this.cb_teljesitmeny.Items.AddRange(new object[] {
-            "50kw",
-            "60kw",
-            "70kw",
-            "80kw",
-            "90kw",
-            "100kw"});
-            this.cb_teljesitmeny.Location = new System.Drawing.Point(160, 202);
-            this.cb_teljesitmeny.Name = "cb_teljesitmeny";
-            this.cb_teljesitmeny.Size = new System.Drawing.Size(190, 21);
-            this.cb_teljesitmeny.TabIndex = 4;
-            // 
             // tb_rendsz
             // 
             this.tb_rendsz.Location = new System.Drawing.Point(160, 63);
@@ -133,23 +121,68 @@
             // lib_1
             // 
             this.lib_1.FormattingEnabled = true;
-            this.lib_1.Location = new System.Drawing.Point(443, 61);
+            this.lib_1.Location = new System.Drawing.Point(552, 63);
             this.lib_1.Name = "lib_1";
-            this.lib_1.Size = new System.Drawing.Size(271, 290);
+            this.lib_1.Size = new System.Drawing.Size(207, 290);
             this.lib_1.TabIndex = 10;
             this.lib_1.SelectedIndexChanged += new System.EventHandler(this.lib_1_SelectedIndexChanged);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(161, 199);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            54,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(189, 20);
+            this.numericUpDown1.TabIndex = 11;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            54,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.CausesValidation = false;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(356, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 16);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "(Formátum: ABC123)";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(356, 199);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 20);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Kw";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.lib_1);
             this.Controls.Add(this.tb_tipus);
             this.Controls.Add(this.bt_submit);
             this.Controls.Add(this.tb_gyart);
             this.Controls.Add(this.tb_rendsz);
-            this.Controls.Add(this.cb_teljesitmeny);
             this.Controls.Add(this.lb_telj);
             this.Controls.Add(this.lb_gyart);
             this.Controls.Add(this.lb_tip);
@@ -157,6 +190,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Gépjárműrögzítő";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,12 +202,14 @@
         private System.Windows.Forms.Label lb_tip;
         private System.Windows.Forms.Label lb_gyart;
         private System.Windows.Forms.Label lb_telj;
-        private System.Windows.Forms.ComboBox cb_teljesitmeny;
         private System.Windows.Forms.TextBox tb_rendsz;
         private System.Windows.Forms.TextBox tb_gyart;
         private System.Windows.Forms.Button bt_submit;
         private System.Windows.Forms.TextBox tb_tipus;
         private System.Windows.Forms.ListBox lib_1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
